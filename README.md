@@ -1,24 +1,56 @@
-# README
+# Sooks Sandwich Shop
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a side project for me to get some practice in building Rails Applications. The end result will be a Rails Web App for a fake sandwich eCommerce shop that allows users to order sandwiches and for admins and employees to manage those orders. The prompt for this project comes from [Fake Clients](https://fakeclients.com)
 
-Things you may want to cover:
+Prompt:
 
-* Ruby version
+> I'm Sook, I just founded a new business called Sook's Sandwich bar Shop. For a while now, I've been looking for a good website for my business.
+> We need a new login-page for our employee web portal. Can you help us out?
 
-* System dependencies
+## Tech Stack
 
-* Configuration
+- Ruby 2.6.4
+- Rails 6.0.0
+- Docker
 
-* Database creation
+## Getting Started
 
-* Database initialization
+To get this application started, run the following commands:
 
-* How to run the test suite
+```bash
+  docker-compose run web rails new . --database=postgresql
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+After the application is initially created using the above command, build the docker image
 
-* Deployment instructions
+```bash
+  docker-compose build
+```
 
-* ...
+Once the image is created, connect the app to the database in `config/database.yml`
+
+```yml
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password:
+  pool: 5
+
+development:
+  <<: *default
+  database: myapp_development
+
+
+test:
+  <<: *default
+  database: myapp_test
+```
+
+Finally, run the following commands to start the database and create it
+
+```bash
+  docker-compose up
+  docker-compose run web rake db:create
+```
