@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   db:
@@ -9,8 +9,8 @@ services:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/app
+      - .:/myapp
     ports:
-      - '3000:3000'
+      - "3000:3000"
     depends_on:
       - db

@@ -1,58 +1,22 @@
-# replace shell with bash so we can source files
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs ghostscript
-
-RUN mkdir -p /app
-RUN mkdir -p /usr/local/nvm
-WORKDIR /app
-
-RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
-RUN apt-get install -y nodejs
-
-RUN node -v
-RUN npm -v
-
-# Copy the Gemfile as well as the Gemfile.lock and install
-# the RubyGems. This is a separate step so the dependencies
-# will be cached unless changes to one of those two files
-# are made.
-COPY Gemfile Gemfile.lock package.json yarn.lock ./
-RUN gem install bundler -v 1.17.2
-RUN gem install foreman -v 0.85.0
-RUN bundle install --verbose --jobs 20 --retry 5
-
-RUN npm install -g yarn
-RUN yarn install --check-files
-
-# Copy the main application.
-COPY . ./
-
-# Expose port 3000 to the Docker host, so we can access it
-# from the outside.
-EXPOSE 3000
-
-# The main command to run when the container starts. Also
-# tell the Rails dev server to bind to all interfaces by
-# default.
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
-
-
 FROM ruby:2.6.4
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
-RUN mkdir /app
-WORKDIR /app
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
+RUN ruby -v
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq && apt-get install -y nodejs yarn postgresql-client
+RUN mkdir /myapp
+WORKDIR /myapp
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
 RUN gem install bundler
 RUN bundle install
-COPY . /app
+RUN rails -v
+COPY . /myapp
 
-# Add a script to be executed every time the container starts.
+# # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
-# Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# # Start the main process.
+CMD ["rails", "s", "-b", "0.0.0.0"]
