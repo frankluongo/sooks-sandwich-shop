@@ -25,12 +25,29 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+# Gems Installed For This Project:
+  # Authentication
+  gem 'devise', '~> 4.2'
+  # Form Simplification
+  gem 'simple_form', '~> 4.1'
+  # Image Upload
+  gem 'carrierwave', '~> 2.0', '>= 2.0.1'
+  # Image Minification & Generating Thumbnails
+  gem 'mini_magick', '~> 4.9', '>= 4.9.5'
+
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # Better Error Tracking
+  gem 'better_errors', '~> 2.5', '>= 2.5.1'
+  # Live Reloading
+  gem 'guard', '~> 2.15', '>= 2.15.1'
+  gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
 end
 
 group :development do
