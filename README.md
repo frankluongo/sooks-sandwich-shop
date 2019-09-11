@@ -1,6 +1,8 @@
 # Sooks Sandwich Shop
 
-This is a side project for me to get some practice in building Rails Applications. The end result will be a Rails Web App for a fake sandwich eCommerce shop that allows users to order sandwiches and for admins and employees to manage those orders. The prompt for this project comes from [Fake Clients](https://fakeclients.com)
+This is a side project for me to get some practice in building Rails Applications. The end result will be a Rails Web App for a fake sandwich eCommerce shop that allows users to order sandwiches and for admins and employees to manage those orders. The prompt for this project comes from [Fake Clients](https://fakeclients.com).
+
+Inspiration and help with the initial skeleton of this application comes from [this article on building an eCommerce Platform](https://web-crunch.com/ruby-on-rails-ecommerce-music-shop/).
 
 Prompt:
 
