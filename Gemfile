@@ -50,6 +50,8 @@ group :development, :test do
   # Live Reloading
   gem 'guard', '~> 2.15', '>= 2.15.1'
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
+  gem 'rack-livereload'
+  gem 'foreman'
 end
 
 group :development do

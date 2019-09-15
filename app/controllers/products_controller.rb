@@ -5,12 +5,17 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    puts "======================================="
+    puts Product.inspect
+    puts "======== uhh =========================="
     @products = Product.all
+    @test = 'test'
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    puts "====================="
   end
 
   # GET /products/new
