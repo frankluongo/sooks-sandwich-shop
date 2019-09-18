@@ -1,0 +1,20 @@
+$text-align-options: (left, center, right);
+$text-case-options: (lowercase, uppercase, capitalize);
+$font-weights: (300, 400, 500, 700);
+
+@each $option in $text-align-options {
+  .text-align-#{$option} {
+    text-align: $option;
+  }
+}
+@each $option in $text-case-options {
+  .text-case-#{$option} {
+    text-transform: $option;
+  }
+}
+
+@each $weight in $font-weights {
+  .font-#{$weight} {
+    font-weight: $weight;
+  }
+}

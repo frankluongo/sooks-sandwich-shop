@@ -1,0 +1,21 @@
+$directions: (top, left, bottom, right);
+
+@each $break, $value in $breakpoints {
+  @include breakpoint($break) {
+    @each $direction in $directions {
+      @for $i from 1 through 12 {
+        .m-#{$break}-#{$direction}-#{$i} {
+          margin-#{$direction}: #{$i}rem;
+        }
+
+        .p-#{$break}-#{$i} {
+          padding: #{$i}rem;
+        }
+
+        .p-#{$break}-#{$direction}-#{$i} {
+          padding-#{$direction}: #{$i}rem;
+        }
+      }
+    }
+  }
+}

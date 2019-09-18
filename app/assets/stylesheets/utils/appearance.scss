@@ -1,0 +1,27 @@
+.has-background-image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@for $i from 0 through 8 {
+  .color-primary-#{$i} {
+    color: primaryColor($i);
+  }
+  .color-secondary-#{$i} {
+    color: secondaryColor($i);
+  }
+  .color-gray-#{$i} {
+    color: grayscale($i);
+  }
+
+  .background-primary-#{$i} {
+    background-color: primaryColor($i);
+  }
+  .background-secondary-#{$i} {
+    background-color: secondaryColor($i);
+  }
+  .background-gray-#{$i} {
+    background-color: grayscale($i);
+  }
+}

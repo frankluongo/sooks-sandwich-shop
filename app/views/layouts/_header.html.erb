@@ -1,0 +1,37 @@
+<header class="site-header background-primary-4 p-xsmall-top-1 p-xsmall-bottom-1">
+  <section class="site-header__container container">
+    <figure class="site-header__logo site-header-logo">
+      logo
+    </figure>
+    <nav class="site-header__navigation site-navigation">
+      <ul class="site-navigation__list inline-list">
+        <li class="site-navigation-list__item">
+          <%= link_to "Home", content_index_path, { "class" => "site-navigation-list-item__link ui__nav-link"} %>
+        </li>
+        <li class="site-navigation-list__item">
+          <%= link_to "About", about_path, { "class" => "site-navigation-list-item__link ui__nav-link"} %>
+        </li>
+        <li class="site-navigation-list__item">
+          <%= link_to "Products", products_path, { "class" => "site-navigation-list-item__link ui__nav-link"} %>
+        </li>
+        <% if user_signed_in? %>
+        <li class="site-navigation-list__item">
+          <%= link_to "Sign Out", destroy_user_session_path, {
+                "method" => "DELETE",
+                "data-confirm" => "Are you sure?",
+                "class" => "site-navigation-list-item__link ui__nav-link"
+              }
+          %>
+        </li>
+        <% else %>
+        <li class="site-navigation-list__item">
+          <%= link_to "Sign Up", new_user_registration_path, { "class" => "site-navigation-list-item__link ui__nav-link"} %>
+        </li>
+        <li class="site-navigation-list__item">
+          <%= link_to "Sign In", user_session_path, { "class" => "site-navigation-list-item__link ui__nav-link"} %>
+        </li>
+        <% end %>
+      </ul>
+    </nav>
+  </section>
+</header>

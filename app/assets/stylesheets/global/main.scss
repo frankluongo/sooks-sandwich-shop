@@ -1,0 +1,15 @@
+main {
+  padding-top: 1rem;
+}
+
+@include breakpoint(small) {
+  main {
+    padding-top: 2rem;
+  }
+}
+
+@include breakpoint(medium) {
+  main {
+    padding-top: 3rem;
+  }
+}

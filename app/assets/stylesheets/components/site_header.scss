@@ -1,0 +1,28 @@
+.site-header {
+  display: flex;
+}
+
+.site-header__container {
+  display: flex;
+}
+
+.site-header__logo {
+  flex: 0 1 6rem;
+}
+
+.site-header__navigation {
+  flex: 1 1 auto;
+}
+
+// Navigation
+
+.site-navigation {
+}
+
+.site-navigation__list {
+  display: flex;
+}
+
+.site-navigation-list__item {
+  flex: 1 1 auto;
+}

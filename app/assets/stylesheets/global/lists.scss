@@ -1,0 +1,11 @@
+.inline-list {
+  display: flex;
+
+  li {
+    margin-right: 1rem;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
