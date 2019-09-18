@@ -11,6 +11,33 @@
     </div>
   <% end %>
 
+  <%= form.hidden_field :user_id, :value => current_user.id %>
+
+  <div class="form-control">
+    <%= form.label :name, "Product Name" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="form-control">
+    <%= form.label :product_type, "Product Type" %>
+    <%= form.select :product_type, @types %>
+  </div>
+
+  <div class="form-control">
+    <%= form.label :description, "Product Description" %>
+    <%= form.rich_text_area :description %>
+  </div>
+
+  <div class="form-control">
+    <%= form.label :image, "Product Image" %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="form-control">
+    <%= form.label :price, "Product Price" %>
+    <%= form.number_field :price, { "value" => 5.00 } %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
