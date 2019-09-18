@@ -1,15 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except[:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /products
   # GET /products.json
   def index
-    puts "======================================="
-    puts Product.inspect
-    puts "======== uhh =========================="
     @products = Product.all
-    @test = 'test'
   end
 
   # GET /products/1
