@@ -6,8 +6,8 @@ form {
   padding: 1rem;
 
   background-color: grayscale(0);
-  border: 1px solid grayscale(1);
-  box-shadow: 4px 2px 0 2px rgba(grayscale(7), 0.05);
+  border: 1px solid grayscale(2);
+  box-shadow: 15px 15px 0 5px rgba(grayscale(7), 0.05);
 }
 
 .form-control {
@@ -19,11 +19,60 @@ form {
   margin-bottom: 0.5rem;
 }
 
-.form-control input {
+.form-control input,
+.form-control trix-editor {
   display: block;
   width: 100%;
-  min-height: 3rem;
+  padding: 1.5rem 1rem;
+
+  font-family: $primaryFont;
+  font-size: 1rem;
+
+  border: 1px solid grayscale(2);
+  @extend .elevated-item;
+
+  &:focus {
+    border: 1px solid grayscale(3);
+    box-shadow: 0 0 1rem 0 rgba(primaryColor(5), 0.25);
+    outline: none;
+  }
+}
+
+.form-control select {
+  display: block;
   padding: 1rem;
+  width: 100%;
+  min-height: 2rem;
+
+  font-family: $primaryFont;
+  font-size: 1rem;
+  line-height: 2;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: grayscale(0);
+  border: 1px solid grayscale(2);
+
+  @extend .elevated-item;
+
+  &:focus {
+    border: 1px solid grayscale(3);
+    box-shadow: 0 0 1rem 0 rgba(primaryColor(5), 0.25);
+    outline: none;
+  }
+}
+
+.form-select-wrapper {
+  position: relative;
+}
+
+.form-select__icon {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+
+  transform: translateY(-50%);
 }
 
 .form-control trix-toolbar {
@@ -31,11 +80,28 @@ form {
 }
 
 .form-control trix-editor {
-  display: block;
-  min-height: 4rem;
-  padding: 1rem;
+  min-height: 6rem;
 
-  border: 1px solid grayscale(3);
+  ul {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+
+    list-style: circle;
+
+    li {
+      margin-bottom: 0.5rem;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.form-control .trix-button-row {
+  display: flex;
+  margin-bottom: -1rem;
 }
 
 @include breakpoint(small) {
@@ -49,5 +115,11 @@ form {
 
   .form-control label {
     margin-bottom: 1rem;
+  }
+}
+
+@include breakpoint(medium down) {
+  .form-control .trix-button-row {
+    flex-wrap: wrap;
   }
 }

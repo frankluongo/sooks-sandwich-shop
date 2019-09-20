@@ -22,6 +22,14 @@ h1 {
   text-transform: uppercase;
 }
 
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
 .ui__nav-link {
   color: grayscale(0);
   font-family: $headingFont;

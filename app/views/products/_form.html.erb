@@ -20,7 +20,10 @@
 
   <div class="form-control">
     <%= form.label :product_type, "Product Type" %>
-    <%= form.select :product_type, @types %>
+    <div class="form-select-wrapper">
+      <%= form.select :product_type, @types %>
+      <div class="form-select__icon fa fa-chevron-down"></div>
+    </div>
   </div>
 
   <div class="form-control">
@@ -39,6 +42,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Save Dat Deliciousness", { "class" => "button default primary m-xsmall-top-1 elevated-item"} %>
   </div>
 <% end %>
