@@ -8,4 +8,9 @@ class Product < ApplicationRecord
   validates :price,length: { maximum: 7 }
 
   PRODUCT_TYPES = %w{ Sandwich Panini Wrap }
+
+  def self.slugify(title)
+    # title.downcase.gsub(/[^0-9A-Za-z]/, '')
+    title.downcase.gsub(/[^a-zA-Z. ]/, '').gsub(" ", "-");
+  end
 end

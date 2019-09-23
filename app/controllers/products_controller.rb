@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    puts "====================="
+    @product = Product.find_by slug: params[:slug]
   end
 
   # GET /products/new
@@ -29,7 +29,8 @@ class ProductsController < ApplicationController
   def create
     # @product = Product.new(product_params)
     @types = Product::PRODUCT_TYPES
-    @product = current_user.products.build(product_params)
+    slug = Product.slugify(product_params["name"])
+    @product = current_user.products.build(product_params.merge(:slug => slug))
 
     respond_to do |format|
       if @product.save
@@ -80,7 +81,8 @@ class ProductsController < ApplicationController
         :description,
         :image,
         :user_id,
-        :price
+        :price,
+        :slug
       )
     end
 end

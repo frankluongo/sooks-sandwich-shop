@@ -30,6 +30,10 @@ strong {
   font-weight: bold;
 }
 
+abbr {
+  text-decoration: none;
+}
+
 .ui__nav-link {
   color: grayscale(0);
   font-family: $headingFont;

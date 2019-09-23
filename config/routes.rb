@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   }
 
   # Products
-  resources :products
+  resources :products, param: :slug
 
   # Content Pages
   get 'content/index'

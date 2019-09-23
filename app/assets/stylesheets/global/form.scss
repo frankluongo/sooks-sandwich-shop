@@ -19,6 +19,13 @@ form {
   margin-bottom: 0.5rem;
 }
 
+.form-control span {
+  display: block;
+  margin-top: 1rem;
+
+  text-transform: capitalize;
+}
+
 .form-control input,
 .form-control trix-editor {
   display: block;
@@ -60,6 +67,22 @@ form {
     border: 1px solid grayscale(3);
     box-shadow: 0 0 1rem 0 rgba(primaryColor(5), 0.25);
     outline: none;
+  }
+}
+
+.form-checkbox-control {
+  padding: 1rem;
+
+  border: 1px solid grayscale(2);
+}
+
+.form-checkbox-control {
+  label {
+    display: flex;
+  }
+
+  input {
+    margin-right: 1rem;
   }
 }
 
