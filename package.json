@@ -1,6 +1,9 @@
 {
   "name": "myapp",
   "private": true,
+  "scripts": {
+    "start": "docker-compose up -d && docker-compose logs -f --tail=100 web"
+  },
   "dependencies": {
     "@rails/actioncable": "^6.0.0-alpha",
     "@rails/actiontext": "^6.0.0",
