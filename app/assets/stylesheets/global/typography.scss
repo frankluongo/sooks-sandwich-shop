@@ -34,6 +34,15 @@ abbr {
   text-decoration: none;
 }
 
+p {
+  font-size: 1rem;
+  line-height: 1.7;
+
+  &.bigger {
+    font-size: 1.5rem;
+  }
+}
+
 .ui__nav-link {
   color: grayscale(0);
   font-family: $headingFont;

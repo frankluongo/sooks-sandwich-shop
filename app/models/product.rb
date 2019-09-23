@@ -9,6 +9,10 @@ class Product < ApplicationRecord
 
   PRODUCT_TYPES = %w{ Sandwich Panini Wrap }
 
+  def to_param
+    slug
+  end
+
   def self.slugify(title)
     # title.downcase.gsub(/[^0-9A-Za-z]/, '')
     title.downcase.gsub(/[^a-zA-Z. ]/, '').gsub(" ", "-");

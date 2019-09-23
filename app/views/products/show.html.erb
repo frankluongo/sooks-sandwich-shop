@@ -1,4 +1,38 @@
 <p id="notice"><%= notice %></p>
 
+
+<div class="container product-page__container">
+  <section class="grid-pd-summary">
+    <figure class="product-page__image grid-item-pd-image">
+      <%= image_tag(@product.image_url(:pd)) %>
+    </figure>
+    <article class="product-page__details grid-item-pd-details">
+
+      <div class="product-page__heading">
+        <h1><%= @product.name %></h1>
+      </div>
+
+      <div class="product-page__price m-xsmall-top-1">
+        <p class="bigger">
+          <%= number_to_currency(@product.price) %>
+        </p>
+      </div>
+
+      <div class="product-page__type m-xsmall-top-1">
+        <p>
+          <%= @product.product_type %>
+        </p>
+      </div>
+
+      <div class="product-page__description m-xsmall-top-1">
+        <p>
+          <%= @product.description %>
+        </p>
+      </div>
+    </article>
+  </section>
+
+</div>
+
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

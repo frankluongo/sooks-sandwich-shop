@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @product = Product.find_by slug: params[:slug]
+    @product = set_product
   end
 
   # GET /products/new
@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    @types = Product::PRODUCT_TYPES
   end
 
   # POST /products
@@ -70,7 +71,8 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      # raise params.inspect
+      @product = Product.find_by slug: params[:slug]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

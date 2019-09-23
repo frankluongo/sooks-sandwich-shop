@@ -1,6 +1,13 @@
-<h1>Editing Product</h1>
+<section class="container">
+  <article class="site-heading text-align-center">
+    <h1>Edit Product</h1>
+  </article>
+  <article class="site-form-wrapper p-xsmall-top-2 p-xsmall-bottom-2 p-small-top-4 p-small-bottom-4">
+    <%= render 'form', product: @product %>
+  </article>
+  <article class="site-back-links text-align-center">
+    <%= link_to 'Show', @product %> |
+    <%= link_to 'Back', products_path %>
+  </article>
+</section>
 
-<%= render 'form', product: @product %>
-
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>

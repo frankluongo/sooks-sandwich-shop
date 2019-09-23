@@ -1,0 +1,50 @@
+.product-page__heading h1 {
+  font-size: 1.5rem;
+}
+
+.product-page__details {
+  padding: 1rem;
+}
+
+// BREAKPOINTS
+// ===================================================================
+
+@media all and (min-width: 40rem) {
+  .product-page__heading h1 {
+    font-size: 3rem;
+  }
+
+  .product-page__details {
+    padding: 2rem;
+  }
+}
+
+// GRID
+// ===================================================================
+
+.grid-pd-summary {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    "details"
+    "image";
+}
+
+.grid-item-pd-image {
+  grid-area: image;
+}
+
+.grid-pd-item-details {
+  grid-area: details;
+}
+
+@media all and (min-width: 40rem) {
+  .grid-pd-summary {
+    gap: 2rem;
+    grid-template-areas: "image details details";
+  }
+
+  .product-page__heading h1 {
+    font-size: 3rem;
+  }
+}
