@@ -2,8 +2,28 @@
   font-size: 1.5rem;
 }
 
+.product-page__image {
+  min-height: 50vh;
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .product-page__details {
   padding: 1rem;
+}
+
+.product-page__price {
+  &:after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 2px;
+    margin: 1rem auto 2rem;
+
+    background-color: grayscale(5);
+  }
 }
 
 // BREAKPOINTS
@@ -41,7 +61,8 @@
 @media all and (min-width: 40rem) {
   .grid-pd-summary {
     gap: 2rem;
-    grid-template-areas: "image details details";
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "image details";
   }
 
   .product-page__heading h1 {

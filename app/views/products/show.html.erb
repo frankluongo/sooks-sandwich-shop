@@ -1,26 +1,21 @@
-<p id="notice"><%= notice %></p>
-
-
 <div class="container product-page__container">
   <section class="grid-pd-summary">
-    <figure class="product-page__image grid-item-pd-image">
-      <%= image_tag(@product.image_url(:pd)) %>
+    <figure
+      class="product-page__image grid-item-pd-image"
+      style="background-image: url(<%= @product.image_url(:pd) %>)"
+      >
     </figure>
-    <article class="product-page__details grid-item-pd-details">
+    <article class="product-page__details grid-item-pd-details text-align-center">
 
       <div class="product-page__heading">
-        <h1><%= @product.name %></h1>
+        <h1><%= @product.name %> <%= @product.product_type %></h1>
       </div>
 
       <div class="product-page__price m-xsmall-top-1">
-        <p class="bigger">
-          <%= number_to_currency(@product.price) %>
-        </p>
-      </div>
-
-      <div class="product-page__type m-xsmall-top-1">
-        <p>
-          <%= @product.product_type %>
+        <p class="product-price">
+          <em>
+            <%= number_to_currency(@product.price) %>
+          </em>
         </p>
       </div>
 
@@ -29,10 +24,19 @@
           <%= @product.description %>
         </p>
       </div>
+      <div class="product-page__add-to-cart m-xsmall-top-3">
+        <form action="" class="product-page-add-to-cart-form">
+          <div class="form-control">
+            <label for="product-quantity">Quantity</label>
+            <input id="product-quantity" type="number" name="quantity" min="1" max="30">
+          </div>
+          <div class="form-control">
+            <button class="button primary default" type="submit">Add to Cart
+            </button>
+          </div>
+        </form>
+      </div>
     </article>
   </section>
 
 </div>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>

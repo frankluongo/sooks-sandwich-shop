@@ -8,14 +8,22 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Passion+One:700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Passion+One:400,700,900&display=swap" rel="stylesheet">
   </head>
 
   <body>
     <%= render 'layouts/header' %>
     <main>
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+      <% if notice %>
+        <div class="notification notification--notice elevated-item">
+          <div class="notification__text notification-text__notice"><%= notice %></div>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="notification notification--alert elevated-item">
+          <div class="notification__text notification-text__alert"><%= alert %></div>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
   </body>

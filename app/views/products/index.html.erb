@@ -3,7 +3,7 @@
     <h1>Products Page</h1>
   </article>
   <article class="site-table-wrapper p-xsmall-bottom-2 p-xsmall-top-2 p-small-bottom-4 p-small-top-4">
-    <table>
+    <table class="elevated-item">
       <thead>
         <tr>
           <th>ID</th>
@@ -36,7 +36,7 @@
     </table>
   </article>
   <article class="site-links-wrapper">
-    <%= link_to 'New Product', new_product_path %>
+    <%= link_to 'New Product', new_product_path, { class: "button default primary"} %>
   </article>
 </section>
 

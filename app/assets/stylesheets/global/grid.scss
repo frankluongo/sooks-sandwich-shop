@@ -25,3 +25,38 @@
     padding-right: 3rem;
   }
 }
+
+$alignment-options: (flex-start, flex-end, center, baseline, stretch);
+
+$justification-options: (
+  flex-start,
+  flex-end,
+  center,
+  space-between,
+  space-around,
+  space-evenly
+);
+
+@each $option in $alignment-options {
+  .align-items-#{$option} {
+    align-items: $option;
+  }
+  .align-content-#{$option} {
+    align-content: $option;
+  }
+  .align-self-#{$option} {
+    align-self: $option;
+  }
+}
+
+@each $option in $justification-options {
+  .justify-items-#{$option} {
+    justify-items: $option;
+  }
+  .justify-content-#{$option} {
+    justify-content: $option;
+  }
+  .justify-self-#{$option} {
+    justify-self: $option;
+  }
+}

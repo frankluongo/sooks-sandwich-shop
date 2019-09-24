@@ -6,8 +6,14 @@
     <%= render 'form', product: @product %>
   </article>
   <article class="site-back-links text-align-center">
-    <%= link_to 'Show', @product %> |
-    <%= link_to 'Back', products_path %>
+    <ul class="inline-list justify-content-center">
+      <li>
+        <%= link_to 'Show', @product, { class: "button link"} %>
+      </li>
+      <li>
+        <%= link_to 'Back', products_path, { class: "button link"} %>
+      </li>
+    </ul>
   </article>
 </section>
 

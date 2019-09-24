@@ -17,6 +17,7 @@ body {
 h1 {
   font-family: $headingFont;
   font-size: 3rem;
+  font-weight: 700;
   letter-spacing: 0.05em;
   text-shadow: 0.05em 0.05em 0 rgba(grayscale(7), 0.1);
   text-transform: uppercase;
@@ -41,6 +42,19 @@ p {
   &.bigger {
     font-size: 1.5rem;
   }
+
+  &.biggest {
+    font-size: 1.75rem;
+  }
+
+  &.product-price {
+    font-size: 2.5rem;
+  }
+}
+
+.trix-content div {
+  font-size: 1.25rem;
+  line-height: 1.7;
 }
 
 .ui__nav-link {
