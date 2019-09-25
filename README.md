@@ -56,3 +56,8 @@ Finally, run the following commands to start the database and create it
   docker-compose up
   docker-compose run web rake db:create
 ```
+
+## References
+
+- https://medium.com/@kennethteh90/how-to-build-a-basic-e-commerce-store-909f2893be71
+-

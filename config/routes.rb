@@ -9,6 +9,13 @@ Rails.application.routes.draw do
   # Products
   resources :products, param: :slug
 
+  # Cart
+  resource :cart, only: [:show] do
+    put 'add/:product_id', to: 'carts#add', as: :add_to
+    put 'remove/:product_id', to: 'carts#remove', as: :remove_from
+    put 'remove_one/:product_id', to: 'carts#removeone', as: :remove_one
+  end
+
   # Content Pages
   get 'content/index'
   get '/about', to: 'content#about'
