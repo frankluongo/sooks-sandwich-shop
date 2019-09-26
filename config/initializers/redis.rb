@@ -1,3 +1,4 @@
 require 'redis'
 
-$redis = Redis.new
+$redis = Redis.new(:host => ENV["REDIS_HOST"], :port => ENV["REDIS_PORT"])
+

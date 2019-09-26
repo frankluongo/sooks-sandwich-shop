@@ -8,8 +8,8 @@ services:
   redis:
     image: redis
     command: redis-server
-    ports:
-      - "6379:6379"
+    volumes:
+      - "./lib/redis/data:/var/lib/redis/data"
   web:
     build: .
     command: foreman start -f Procfile.dev -p 3000

@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
-
   before_action :authenticate_user!
+
+  require 'redis'
 
   def show
     @cart_products_with_qty = current_user.get_cart_products_with_qty
@@ -8,7 +9,8 @@ class CartsController < ApplicationController
   end
 
   def add
-    current_user.add_to_cart(params[:product_id])
+    raise Redis.new
+    # current_user.add_to_cart(params[:product_id])
     redirect_to cart_path
   end
 

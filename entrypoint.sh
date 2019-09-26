@@ -6,3 +6,5 @@ rm -f /myapp/tmp/pids/server.pid
 
 # Then exec the container's main process (what's set as CMD in the Dockerfile).
 exec "$@"
+echo never | tee /sys/kernel/mm/transparent_hugepage/enabled
+echo never | tee /sys/kernel/mm/transparent_hugepage/defrag
