@@ -37,6 +37,8 @@ gem 'hiredis'
   gem 'carrierwave', '~> 2.0', '>= 2.0.1'
   # Image Minification & Generating Thumbnails
   gem 'mini_magick', '~> 4.9', '>= 4.9.5'
+  # Figaro for Environment Variables
+  gem "figaro"
 
 
 # Reduces boot times through caching; required in config/boot.rb
