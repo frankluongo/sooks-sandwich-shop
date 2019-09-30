@@ -40,18 +40,6 @@
     </tbody>
   </table>
   <% unless current_user.get_cart_products_with_qty.blank? %>
-    <%# <%= link_to "Checkout", new_transaction_path, %> %>
+    <%= link_to "Checkout", checkout_path, {method: "POST"} %>
   <% end %>
 </section>
-
-<%
-  # .container
-
-  #         tr.font-weight-bold
-  #           td colspan="3"
-  #             h5 Total
-  #           td
-  #             h5 = @cart_total
-
-  #   =link_to "Checkout", new_transaction_path, class: "btn btn-success" unless current_user.get_cart_products_with_qty.blank?
-%>

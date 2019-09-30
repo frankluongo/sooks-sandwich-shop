@@ -16,6 +16,12 @@ Rails.application.routes.draw do
     put 'remove_one/:product_id', to: 'carts#removeone', as: :remove_one
   end
 
+  # Checkout
+  resource :checkout, controller: 'checkout'
+
+  # Orders
+  resources :orders
+
   # Content Pages
   get 'content/index'
   get '/about', to: 'content#about'
