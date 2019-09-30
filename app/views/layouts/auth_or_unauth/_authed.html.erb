@@ -1,0 +1,8 @@
+<li class="site-navigation-list__item">
+  <%= link_to "Sign Out", destroy_user_session_path, {
+        "method" => "DELETE",
+        "data-confirm" => "Are you sure?",
+        "class" => "site-navigation-list-item__link ui__nav-link"
+      }
+  %>
+</li>

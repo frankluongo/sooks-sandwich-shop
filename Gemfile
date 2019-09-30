@@ -39,6 +39,8 @@ gem 'hiredis'
   gem 'mini_magick', '~> 4.9', '>= 4.9.5'
   # Figaro for Environment Variables
   gem "figaro"
+  # Stripe for Payments
+  gem 'stripe'
 
 
 # Reduces boot times through caching; required in config/boot.rb
