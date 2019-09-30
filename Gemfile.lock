@@ -101,6 +101,8 @@ GEM
     erubi (1.8.0)
     eventmachine (1.2.7)
     ffi (1.11.1)
+    figaro (1.1.1)
+      thor (~> 0.14)
     foreman (0.64.0)
       dotenv (~> 0.7.0)
       thor (>= 0.13.6)
@@ -283,6 +285,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave (~> 2.0, >= 2.0.1)
   devise (~> 4.2)
+  figaro
   foreman
   guard (~> 2.15, >= 2.15.1)
   guard-livereload (~> 2.5, >= 2.5.2)

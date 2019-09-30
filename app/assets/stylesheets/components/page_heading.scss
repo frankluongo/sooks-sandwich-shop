@@ -1,0 +1,9 @@
+.page-heading {
+  margin-bottom: 1rem;
+}
+
+@include breakpoint(small) {
+  .page-heading {
+    margin-bottom: 2rem;
+  }
+}

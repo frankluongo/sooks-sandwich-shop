@@ -1,4 +1,2 @@
-require 'redis'
-
-$redis = Redis.new(:host => ENV["REDIS_HOST"], :port => ENV["REDIS_PORT"])
-
+# This automatically reads the REDIS_URL from the environment
+$redis ||= Redis.new
