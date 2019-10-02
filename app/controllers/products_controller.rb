@@ -28,7 +28,6 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    # @product = Product.new(product_params)
     @types = Product::PRODUCT_TYPES
     slug = Product.slugify(product_params["name"])
     @product = current_user.products.build(product_params.merge(:slug => slug))

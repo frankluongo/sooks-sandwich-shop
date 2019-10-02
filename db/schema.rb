@@ -47,12 +47,11 @@ ActiveRecord::Schema.define(version: 2019_09_30_011439) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "product_id"
+    t.string "products", default: [], array: true
     t.integer "user_id"
-    t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id", "user_id"], name: "index_orders_on_product_id_and_user_id"
+    t.index ["products", "user_id"], name: "index_orders_on_products_and_user_id"
   end
 
   create_table "products", force: :cascade do |t|

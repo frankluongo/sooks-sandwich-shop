@@ -6,17 +6,25 @@ class CheckoutController < ApplicationController
 
   end
 
-
-
   def create
-    # render :new
-    # redirect_to root_url
-    raise "hello!"
+    order = Order.new
+    order.user_id = current_user.id
+    order.products = current_user.get_cart_products_with_qty
+    raise current_user.get_cart_products_with_qty.inspect
+    order.save!
+
+    respond_to do |format|
+      if order.save
+        format.html { redirect_to shipping_checkout_path }
+      else
+        format.html { redirect_to root_url, notice: 'Oh No!' }
+      end
+    end
   end
 
-  # def shipping
+  def shipping
 
-  # end
+  end
 
   # def billing
   # end

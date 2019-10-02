@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     registrations: 'registrations'
   }
 
+  as :user do
+    get 'login', to: 'devise/sessions#new'
+  end
+
   # Products
   resources :products, param: :slug
 
@@ -17,7 +21,9 @@ Rails.application.routes.draw do
   end
 
   # Checkout
-  resource :checkout, controller: 'checkout'
+  resource :checkout, controller: 'checkout' do
+    get 'shipping', to: 'checkout#shipping'
+  end
 
   # Orders
   resources :orders
