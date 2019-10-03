@@ -40,6 +40,6 @@
     </tbody>
   </table>
   <% unless current_user.get_cart_products_with_qty.blank? %>
-    <%= link_to "Checkout", checkout_path, {method: "POST"} %>
+    <%= link_to "Checkout", new_order_path %>
   <% end %>
 </section>

@@ -7,7 +7,7 @@ class CartsController < ApplicationController
   end
 
   def add
-    current_user.add_to_cart(params[:product_id])
+    current_user.add_to_cart(params[:product_id], params[:quantity])
     redirect_to cart_path
   end
 

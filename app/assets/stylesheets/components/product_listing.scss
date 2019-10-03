@@ -1,0 +1,36 @@
+.product-listings {
+}
+
+.product-listing {
+  display: flex;
+  align-items: center;
+
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+
+  border-bottom: 1px solid grayscale(2);
+}
+
+.product-listing__image {
+  flex: 1 1 25%;
+  padding-top: 12rem;
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.product-listing__text {
+  padding: 1rem;
+
+  flex: 1 1 100%;
+}
+
+@include breakpoint(small) {
+  .product-listing {
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+  }
+}

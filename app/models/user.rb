@@ -18,8 +18,8 @@ class User < ApplicationRecord
     "cart#{id}"
   end
 
-  def add_to_cart(product_id)
-    $redis.hincrby current_user_cart, product_id, 1
+  def add_to_cart(product_id, quantity = 1)
+    $redis.hincrby current_user_cart, product_id, quantity
   end
 
   def remove_from_cart(product_id)
