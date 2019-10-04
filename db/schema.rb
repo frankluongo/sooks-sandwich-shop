@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_011439) do
+ActiveRecord::Schema.define(version: 2019_10_04_193040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,12 +46,52 @@ ActiveRecord::Schema.define(version: 2019_09_30_011439) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "line_items", default: [], array: true
+    t.bigint "cart_subtotal"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "checkouts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "order_id"
+    t.string "line_items", default: [], array: true
+    t.index ["order_id"], name: "index_checkouts_on_order_id"
+    t.index ["user_id"], name: "index_checkouts_on_user_id"
+  end
+
   create_table "orders", force: :cascade do |t|
-    t.string "products", default: [], array: true
+    t.integer "product_id"
     t.integer "user_id"
+    t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["products", "user_id"], name: "index_orders_on_products_and_user_id"
+    t.string "line_items", default: [], array: true
+    t.bigint "order_subtotal"
+    t.bigint "order_shipping"
+    t.bigint "order_tax"
+    t.bigint "order_total"
+    t.string "shipping_first_name"
+    t.string "shipping_last_name"
+    t.string "shipping_address_line_1"
+    t.string "shipping_address_line_2"
+    t.string "shipping_country"
+    t.string "shipping_city"
+    t.integer "shipping_zip_code"
+    t.string "shipping_phone_number"
+    t.string "shipping_email_address"
+    t.string "shipping_option"
+    t.string "billing_first_name"
+    t.string "billing_last_name"
+    t.string "billing_address_line_1"
+    t.string "billing_address_line_2"
+    t.string "billing_country"
+    t.string "billing_city"
+    t.integer "billing_zip_code"
+    t.string "billing_phone_number"
+    t.string "billing_email_address"
+    t.index ["product_id", "user_id"], name: "index_orders_on_product_id_and_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -84,4 +124,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_011439) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "carts", "users"
+  add_foreign_key "checkouts", "orders"
+  add_foreign_key "checkouts", "users"
 end

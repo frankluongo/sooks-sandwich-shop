@@ -12,23 +12,7 @@
       <th>Subtotal</th>
     </thead>
     <tbody>
-      <%
-        @cart_products_with_qty.each do |array|
-        product = array[0]
-        qty = array[1]
-      %>
-        <tr>
-          <td><%= product.name %></td>
-          <td><%= product.price %></td>
-          <td><%= qty %></td>
-          <td><%= product.price * qty.to_i %></td>
-          <td>
-            <%= link_to "+", add_to_cart_path(product.id), method: :put, class: "button" %>
-            <%= link_to "-", remove_one_cart_path(product.id), method: :put, class: "button" %>
-            <%= link_to "Remove", remove_from_cart_path(product.id), method: :put, class: "button" %>
-          </td>
-        </tr>
-      <% end %>
+
       <tr>
         <td colspan="3">
           Total
@@ -43,3 +27,8 @@
     <%= link_to "Checkout", new_order_path %>
   <% end %>
 </section>
+
+<% @cart.line_items.each do |item| %>
+  <%= item.inspect %>
+  <br>
+<% end %>

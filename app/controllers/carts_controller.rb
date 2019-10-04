@@ -2,13 +2,49 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @cart_products_with_qty = current_user.get_cart_products_with_qty
-    @cart_total = current_user.cart_total_price
+    @cart = Cart.find_by(user_id: current_user.id)
   end
 
   def add
-    current_user.add_to_cart(params[:product_id], params[:quantity])
-    redirect_to cart_path
+    if Cart.find_by(user_id: params[:user_id])
+      @cart = Cart.find_by(user_id: params[:user_id])
+
+      line_items = @cart.line_items.push(
+          {
+            product: Product.find(params[:product_id]),
+            quantity: params[:quantity]
+          })
+
+      respond_to do |format|
+        if @cart.update!(:line_items => line_items)
+          format.html { redirect_to cart_path }
+          format.json { render :show, status: :created, location: @cart }
+        else
+          format.html { render :new }
+          format.json { render json: @cart.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+
+      @cart = Cart.create(
+        user_id: params[:user_id],
+        line_items: {
+          product: Product.find(params[:product_id]),
+          quantity: params[:quantity]
+        }
+      )
+      raise @cart.inspect
+      # respond_to do |format|
+      #   if @cart.save!
+      #     format.html { redirect_to cart_path }
+      #     format.json { render :show, status: :created, location: @cart }
+      #   else
+      #     format.html { render :new }
+      #     format.json { render json: @cart.errors, status: :unprocessable_entity }
+      #   end
+      # end
+    end
+
   end
 
   def remove
@@ -19,6 +55,16 @@ class CartsController < ApplicationController
   def removeone
     current_user.remove_one_from_cart(params[:product_id])
     redirect_to cart_path
+  end
+
+  private
+
+  def cart_params
+    params.permit(
+      :user_id,
+      :line_items,
+      :cart_subtotal
+    )
   end
 
 end
