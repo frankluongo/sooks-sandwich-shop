@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_04_193040) do
+ActiveRecord::Schema.define(version: 2019_10_07_005343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,9 +46,16 @@ ActiveRecord::Schema.define(version: 2019_10_04_193040) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "cart_line_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "product_id"
+    t.bigint "cart_id"
+    t.index ["cart_id"], name: "index_cart_line_items_on_cart_id"
+    t.index ["product_id"], name: "index_cart_line_items_on_product_id"
+  end
+
   create_table "carts", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "line_items", default: [], array: true
     t.bigint "cart_subtotal"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
@@ -61,12 +68,18 @@ ActiveRecord::Schema.define(version: 2019_10_04_193040) do
     t.index ["user_id"], name: "index_checkouts_on_user_id"
   end
 
+  create_table "order_line_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.integer "quantity"
+    t.integer "product"
+    t.index ["order_id"], name: "index_order_line_items_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "products", default: [], array: true
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "line_items", default: [], array: true
     t.bigint "order_subtotal"
     t.bigint "order_shipping"
     t.bigint "order_tax"
@@ -123,7 +136,10 @@ ActiveRecord::Schema.define(version: 2019_10_04_193040) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cart_line_items", "carts"
+  add_foreign_key "cart_line_items", "products"
   add_foreign_key "carts", "users"
   add_foreign_key "checkouts", "orders"
   add_foreign_key "checkouts", "users"
+  add_foreign_key "order_line_items", "orders"
 end

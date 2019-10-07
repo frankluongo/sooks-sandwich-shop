@@ -26,7 +26,6 @@
       </div>
       <div class="product-page__add-to-cart m-xsmall-top-3">
         <%= form_with(
-              model: @cart,
               method: 'post',
               url: add_to_cart_path(@product.id),
               class: "product-page-add-to-cart-form"
