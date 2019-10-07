@@ -76,8 +76,9 @@ ActiveRecord::Schema.define(version: 2019_10_07_005343) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string "products", default: [], array: true
+    t.integer "product_id"
     t.integer "user_id"
+    t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "order_subtotal"
@@ -103,7 +104,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_005343) do
     t.integer "billing_zip_code"
     t.string "billing_phone_number"
     t.string "billing_email_address"
-    t.index ["products", "user_id"], name: "index_orders_on_products_and_user_id"
+    t.index ["product_id", "user_id"], name: "index_orders_on_product_id_and_user_id"
   end
 
   create_table "products", force: :cascade do |t|

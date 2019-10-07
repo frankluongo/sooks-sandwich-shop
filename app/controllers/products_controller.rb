@@ -1,6 +1,14 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show]
+  before_action :set_current_cart
+
+  helper_method :set_current_cart
+
+  def set_current_cart
+
+
+  end
 
   # GET /products
   # GET /products.json
@@ -12,7 +20,9 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = set_product
-    @cart = Cart.find_by(user_id: current_user.id) || Cart.new
+    @cart = Cart.find_by(user_id: current_user.id) || Cart.create(user_id: current_user.id)
+    @line_item = CartLineItem.new
+    session[:current_cart_id] = @cart.id
   end
 
   # GET /products/new

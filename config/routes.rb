@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     put 'remove_one/:product_id', to: 'carts#removeone', as: :remove_one
   end
 
+  namespace :cart, path: 'cart' do
+    resources :line_items, only: [:new, :create, :update, :delete]
+  end
+
   # Checkout
   resource :checkout, controller: 'checkout' do
     get 'shipping', to: 'checkout#shipping'
