@@ -3,53 +3,35 @@ class CartsController < ApplicationController
 
   def show
     @cart = Cart.find_by(user_id: current_user.id)
-    @products = @cart.line_items
-    @products.each do |product|
-      puts product.class
-    end
+    @products = CartLineItem.where(cart_id: @cart.id)
+
   end
 
   def add
-    @cart = Cart.find_by(user_id: current_user.id) || Cart.new
-    @cart.user_id = current_user.id
+    @cart = Cart.find_by(user_id: current_user.id) || Cart.new(
+      :user_id => current_user.id
+    )
 
     if @cart.id
-      line_items = @cart.line_items.push(
-        build_line_items(
-          params[:cart][:line_item_product_id],
-          params[:cart][:line_item_quantity]
-        )
+      @line_item = CartLineItem.new(
+        :cart_id => @cart.id,
+        :product_id => params[:line_item_product_id],
+        :quantity => params[:line_item_quantity]
       )
-
       respond_to do |format|
-        if @cart.update!(
-          :line_items => line_items
-        )
+        if @line_item.save!
           format.html { redirect_to cart_path }
-          format.json { render :show, status: :created, location: @cart }
+          format.json { render :show, status: :created, location: @line_item }
         else
           format.html { render :new }
-          format.json { render json: @cart.errors, status: :unprocessable_entity }
+          format.json { render json: @line_item.errors, status: :unprocessable_entity }
         end
       end
     else
-      @cart.line_items = [
-        build_line_items(
-          params[:cart][:line_item_product_id],
-          params[:cart][:line_item_quantity]
-        )
-      ]
-
-      respond_to do |format|
-        if @cart.save!
-          format.html { redirect_to cart_path }
-          format.json { render :show, status: :created, location: @cart }
-        else
-          format.html { render :new }
-          format.json { render json: @cart.errors, status: :unprocessable_entity }
-        end
-      end
+      raise "new cart"
     end
+
+
 
   end
 
@@ -78,6 +60,18 @@ class CartsController < ApplicationController
       :user_id,
       :line_items,
       :cart_subtotal
+    )
+  end
+
+  def line_items_params
+    params.require(:cart_line_item).permit(
+      :name,
+      :product_type,
+      :description,
+      :image,
+      :user_id,
+      :price,
+      :slug
     )
   end
 
