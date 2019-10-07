@@ -17,9 +17,6 @@ class Cart::LineItemsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     @line_item = line_item_exists?
     current_quantity = @line_item.quantity
