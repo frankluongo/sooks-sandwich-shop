@@ -29,6 +29,7 @@ gem 'hiredis'
 # Gems Installed For This Project:
   # Authentication
   gem 'devise', '~> 4.2'
+  gem 'devise-guests', '~> 0.5.0'
   # Form Simplification
   gem 'simple_form', '~> 4.1'
   # Required For Simple Form

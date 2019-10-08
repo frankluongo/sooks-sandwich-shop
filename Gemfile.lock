@@ -94,6 +94,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-guests (0.5.0)
+      devise
     dotenv (0.7.0)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
@@ -284,6 +286,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave (~> 2.0, >= 2.0.1)
   devise (~> 4.2)
+  devise-guests (~> 0.5.0)
   figaro
   foreman
   guard (~> 2.15, >= 2.15.1)

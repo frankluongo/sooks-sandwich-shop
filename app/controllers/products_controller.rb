@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_current_cart
 
   helper_method :set_current_cart
@@ -15,24 +15,20 @@ class ProductsController < ApplicationController
 
   def show
     @product = set_product
-    @cart = Cart.find_by(user_id: current_user.id) || Cart.create(user_id: current_user.id)
+    @cart = Cart.find_by(user_id: current_or_guest_user.id) || Cart.create(user_id: current_or_guest_user.id)
     @line_item = CartLineItem.new
     session[:current_cart_id] = @cart.id
   end
 
-  # GET /products/new
   def new
     @types = Product::PRODUCT_TYPES
     @product = Product.new
   end
 
-  # GET /products/1/edit
   def edit
     @types = Product::PRODUCT_TYPES
   end
 
-  # POST /products
-  # POST /products.json
   def create
     @types = Product::PRODUCT_TYPES
     slug = Product.slugify(product_params["name"])
@@ -49,8 +45,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -63,8 +57,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
   def destroy
     @product.destroy
     respond_to do |format|
@@ -76,7 +68,6 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      # raise params.inspect
       @product = Product.find_by slug: params[:slug]
     end
 

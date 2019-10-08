@@ -35,7 +35,7 @@ class Cart::LineItemsController < ApplicationController
   end
 
   def destroy
-    @line_item = CartLineItem.find(params[:id])
+    @line_item = CartLineItem.find_by cart_id: session[:current_cart_id], product_id: params[:line_item_id]
     @line_item.destroy
     redirect_to cart_path
   end

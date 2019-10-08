@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_005343) do
+ActiveRecord::Schema.define(version: 2019_10_08_144859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,8 +76,9 @@ ActiveRecord::Schema.define(version: 2019_10_07_005343) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string "products", default: [], array: true
+    t.integer "product_id"
     t.integer "user_id"
+    t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "order_subtotal"
@@ -103,7 +104,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_005343) do
     t.integer "billing_zip_code"
     t.string "billing_phone_number"
     t.string "billing_email_address"
-    t.index ["products", "user_id"], name: "index_orders_on_products_and_user_id"
+    t.index ["product_id", "user_id"], name: "index_orders_on_product_id_and_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -130,6 +131,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_005343) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "guest", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
