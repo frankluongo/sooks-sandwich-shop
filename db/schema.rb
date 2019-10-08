@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_08_144859) do
+ActiveRecord::Schema.define(version: 2019_10_08_204422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2019_10_08_144859) do
     t.integer "billing_zip_code"
     t.string "billing_phone_number"
     t.string "billing_email_address"
+    t.string "shipping_state"
     t.index ["products", "user_id"], name: "index_orders_on_products_and_user_id"
   end
 
@@ -117,6 +118,10 @@ ActiveRecord::Schema.define(version: 2019_10_08_144859) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug", null: false
     t.index ["slug"], name: "index_products_on_slug", unique: true
+  end
+
+  create_table "shipping_options", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

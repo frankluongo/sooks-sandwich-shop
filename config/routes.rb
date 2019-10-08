@@ -28,8 +28,17 @@ Rails.application.routes.draw do
   end
 
   # Checkout
-  resource :checkout, controller: 'checkout' do
-    get 'shipping', to: 'checkout#shipping'
+  resource :checkout, controller: 'checkout', only: [:new, :create, :update]
+
+  namespace :checkout, path: 'checkout' do
+    resource :shipping, only: :show, controller: 'shipping' do
+      post 'add-shipping', to: 'shipping#add_shipping'
+      patch 'add-shipping', to: 'shipping#add_shipping'
+    end
+
+    resource :shipping_method, only: :show, controller: 'shipping_method', path: 'shipping-method' do
+      post 'add-shipping-method', to: 'shipping_method#add_shipping_method'
+    end
   end
 
   # Orders

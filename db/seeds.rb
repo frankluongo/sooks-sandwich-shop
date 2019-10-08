@@ -6,11 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Product.create(
-  name: 'The Slamwich',
-  product_type: 'Sandwich',
-  description: 'This sandwich is a grand slam!',
-  image: { },
-  user_id: 0,
-  price: 5.00
-)
+ShippingOption.find_or_create_by(name: "Fast Standard Shipping")
+ShippingOption.find_or_create_by(name: "2 Day Shipping")
+ShippingOption.find_or_create_by(name: "1 Day Shipping")

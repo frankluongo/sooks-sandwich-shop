@@ -1,0 +1,27 @@
+  <aside class="sidebar">
+    <article class="box">
+      <p class="bigger">
+        <strong>Shipping Details</strong>
+      </p>
+      <p>
+        <%= @order.shipping_first_name %>
+        <%= @order.shipping_last_name %>
+      </p>
+      <p>
+        <%= @order.shipping_address_line_1 %>
+      </p>
+      <% if !@order.shipping_address_line_2.empty? %>
+        <p>
+          <%= @order.shipping_address_line_2 %>
+        </p>
+      <% end %>
+      <p>
+        <%= @order.shipping_city %>,
+        <%= @order.shipping_state %>
+        <%= @order.shipping_zip_code %>
+      </p>
+      <p>
+        <%= @order. shipping_country %>
+      </p>
+    </article>
+  </aside>

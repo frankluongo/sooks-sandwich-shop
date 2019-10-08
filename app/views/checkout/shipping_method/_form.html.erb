@@ -1,0 +1,9 @@
+<%= form_with model: @order, url: add_shipping_checkout_shipping_path do |form| %>
+  <div class="form-control">
+    <%= form.label :shipping_option, "Shipping Method" %>
+    <%= collection_radio_buttons(form, :shipping_option, ShippingOption.all, :id, :name) %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Save", { "class" => "button default primary m-xsmall-top-1 elevated-item"} %>
+  </div>
+<% end %>

@@ -1,0 +1,45 @@
+<%= form_with model: @order, url: add_shipping_checkout_shipping_path do |form| %>
+  <div class="form-control">
+    <%= form.label :shipping_first_name, "First Name" %>
+    <%= form.text_field :shipping_first_name %>
+  </div>
+  <div class="form-control">
+    <%= form.label :shipping_last_name, "Last Name" %>
+    <%= form.text_field :shipping_last_name %>
+  </div>
+  <div class="form-control">
+    <%= form.label :shipping_address_line_1, "Address Line 1" %>
+    <%= form.text_field :shipping_address_line_1 %>
+  </div>
+  <div class="form-control">
+    <%= form.label :shipping_address_line_2, "Address Line 2" %>
+    <%= form.text_field :shipping_address_line_2 %>
+  </div>
+  <div class="form-control">
+    <%= form.label :shipping_state, "State" %>
+    <%= form.select :shipping_state, options_for_select(us_states) %>
+  </div>
+  <div class="form-control">
+    <%= form.label :shipping_country, "Country" %>
+    <%= form.text_field :shipping_country %>
+  </div>
+  <div class="form-control">
+    <%= form.label :shipping_city, "City" %>
+    <%= form.text_field :shipping_city %>
+  </div>
+  <div class="form-control">
+    <%= form.label :shipping_zip_code, "Zip Code" %>
+    <%= form.text_field :shipping_zip_code %>
+  </div>
+  <div class="form-control">
+    <%= form.label :shipping_phone_number, "Phone Number" %>
+    <%= form.telephone_field :shipping_phone_number %>
+  </div>
+  <div class="form-control">
+    <%= form.label :shipping_email_address, "Email Address" %>
+    <%= form.email_field :shipping_email_address %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Save", { "class" => "button default primary m-xsmall-top-1 elevated-item"} %>
+  </div>
+<% end %>

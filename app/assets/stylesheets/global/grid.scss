@@ -21,6 +21,12 @@
     padding-left: 3rem;
     padding-right: 3rem;
   }
+
+  .main-content-with-sidebar {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 3fr 1fr;
+  }
 }
 
 $alignment-options: (flex-start, flex-end, center, baseline, stretch);
