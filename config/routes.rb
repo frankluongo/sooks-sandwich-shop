@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   end
 
   namespace :cart, path: 'cart' do
-    resources :line_items, only: [:new, :create, :update, :delete]
+    resources :line_items, only: [:new, :create, :update, :destroy] do
+      post 'update-quantity', to: 'line_items#update_quantity'
+    end
   end
 
   # Checkout

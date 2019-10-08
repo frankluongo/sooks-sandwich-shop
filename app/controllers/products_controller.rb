@@ -7,17 +7,12 @@ class ProductsController < ApplicationController
 
   def set_current_cart
 
-
   end
 
-  # GET /products
-  # GET /products.json
   def index
     @products = Product.all
   end
 
-  # GET /products/1
-  # GET /products/1.json
   def show
     @product = set_product
     @cart = Cart.find_by(user_id: current_user.id) || Cart.create(user_id: current_user.id)
@@ -28,7 +23,7 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @types = Product::PRODUCT_TYPES
-    @product = current_user.products.build
+    @product = Product.new
   end
 
   # GET /products/1/edit
@@ -41,7 +36,7 @@ class ProductsController < ApplicationController
   def create
     @types = Product::PRODUCT_TYPES
     slug = Product.slugify(product_params["name"])
-    @product = current_user.products.build(product_params.merge(:slug => slug))
+    @product = Product.new(product_params.merge(:slug => slug))
 
     respond_to do |format|
       if @product.save

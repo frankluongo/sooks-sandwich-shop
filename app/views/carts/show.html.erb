@@ -4,6 +4,62 @@
       Your Shopping Cart!
     </h1>
   </div>
+
+
+  <section class="flex-table">
+  <%
+    @products.each do |product|
+      pd = product[:product]
+      qty = product[:quantity]
+  %>
+    <article class="flex-table__item line-item">
+      <figure
+        class="line-item__image has-background-image"
+        style="background-image: url(<%= pd.image_url(:pd) %>)">
+      </figure>
+      <div class="line-item__details line-item-details">
+        <div class="line-item-details__type">
+          <%= pd.product_type %>
+        </div>
+        <div class="line-item-details__name">
+          <%= pd.name %>
+        </div>
+        <div class="line-item-details__price">
+          <%= number_to_currency(pd.price) %>
+        </div>
+        <div class="line-item-details__quantity">
+          Quantity: <%= qty %>
+        </div>
+      </div>
+      <div class="line-item__actions">
+        <div class="line-item-actions__quantity-select">
+          <%= form_with(
+              model: pd,
+              method: "post",
+              url: cart_line_item_update_quantity_path(line_item_id: pd.id),
+              class: "product-page-add-to-cart-form",
+            ) do |f| %>
+            <%= f.hidden_field :product_id, { value: pd.id } %>
+          <div class="form-control">
+            <%= f.label :quantity, "Quantity" %>
+            <%= f.number_field :quantity, { min: 1, max: 30, value: qty} %>
+          </div>
+          <div class="form-control">
+            <button class="button primary default" type="submit">
+              Update Quantity
+            </button>
+          </div>
+        <% end %>
+        </div>
+        <%= link_to "Remove", cart_line_item_path(id: pd.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+
+    </article>
+  <% end %>
+  </section>
+
+
+
   <table>
     <thead>
       <th>Name</th>
@@ -23,10 +79,4 @@
       </tr>
     </tbody>
   </table>
-  <% unless current_user.get_cart_products_with_qty.blank? %>
-    <%= link_to "Checkout", new_order_path %>
-  <% end %>
-  <% @products.each do |product| %>
-    <%= product[:product].name %>
-  <% end %>
 </section>

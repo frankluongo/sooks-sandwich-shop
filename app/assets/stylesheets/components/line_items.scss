@@ -1,0 +1,38 @@
+.line-item {
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+
+  border-bottom: 1px solid grayscale(2);
+}
+
+.line-item__image {
+  flex-basis: 15%;
+  margin-right: 2rem;
+  padding-top: 9rem;
+}
+
+.line-item__details {
+  flex-basis: 70%;
+}
+
+.line-item-details__type {
+  margin-bottom: 0.5rem;
+
+  color: grayscale(3);
+  font-family: $headingFont;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.line-item-details__name {
+  margin-bottom: 0.5rem;
+
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.line-item__actions {
+  flex-basis: 15%;
+}
