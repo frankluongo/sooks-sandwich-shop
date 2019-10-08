@@ -1,6 +1,13 @@
 class User < ApplicationRecord
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
+  after_initialize :set_username
+
+  def set_username
+    if self.guest
+      self.username = "user_#{Time.now.to_i}#{rand(100)}"
+    end
+  end
 
   def set_default_role
     self.role ||= :user
