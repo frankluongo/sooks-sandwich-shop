@@ -1,0 +1,73 @@
+<div class="box main-content-with-sidebar m-xsmall-bottom-1 m-small-bottom-3">
+  <section class="m-medium-right-2">
+    <%
+      order[:products].each do |product|
+      pd = product[:product]
+      qty = product[:quantity]
+    %>
+      <article class="flex-table__item line-item">
+        <figure
+          class="line-item__image has-background-image"
+          style="background-image: url(<%= pd.image_url(:pd) %>)">
+        </figure>
+
+        <div class="line-item__details line-item-details">
+          <div class="line-item-details__type">
+            <%= pd.product_type %>
+          </div>
+          <div class="line-item-details__name">
+            <%= pd.name %>
+          </div>
+          <div class="line-item-details__price">
+            <%= number_to_currency(pd.price) %>
+          </div>
+        </div>
+        <div class="line-item__total">
+          <%= qty %> x <%= number_to_currency(pd.price * qty) %>
+        </div>
+      </article>
+    <% end %>
+  </section>
+  <aside>
+    <article class="box m-xsmall-bottom-1">
+      <p class="bigger">
+        <strong>Order Details</strong>
+      </p>
+      <p>
+        <%= order[:order_subtotal] %>
+        <%= order[:order_tax] %>
+        <hr>
+        <%= order[:order_total] %>
+      </p>
+    </article>
+    <article class="box">
+      <p class="bigger">
+        <strong>Shipping Details</strong>
+      </p>
+      <p>
+        <%= order[:shipping_first_name] %>
+        <%= order[:shipping_last_name] %>
+      </p>
+      <p>
+        <%= order[:shipping_address_line_1] %>
+      </p>
+      <% if !order[:shipping_address_line_2].empty? %>
+        <p>
+          <%= order[:shipping_address_line_2] %>
+        </p>
+      <% end %>
+      <p>
+        <%= order[:shipping_city] %>,
+        <%= order[:shipping_state] %>
+        <%= order[:shipping_zip_code] %>
+      </p>
+      <p>
+        <%= order[:shipping_country] %>
+      </p>
+      <p>
+        <%= shipping_option(order[:shipping_option]) %>
+      </p>
+    </article>
+  </aside>
+
+</div>

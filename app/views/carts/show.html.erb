@@ -5,61 +5,76 @@
     </h1>
   </div>
 
-
-  <section class="flex-table">
-  <%
-    @products.each do |product|
-      pd = product[:product]
-      qty = product[:quantity]
-  %>
-    <article class="flex-table__item line-item">
-      <figure
-        class="line-item__image has-background-image"
-        style="background-image: url(<%= pd.image_url(:pd) %>)">
-      </figure>
-      <div class="line-item__details line-item-details">
-        <div class="line-item-details__type">
-          <%= pd.product_type %>
-        </div>
-        <div class="line-item-details__name">
-          <%= pd.name %>
-        </div>
-        <div class="line-item-details__price">
-          <%= number_to_currency(pd.price) %>
-        </div>
-      </div>
-      <div class="line-item__quantity">
-        <div class="line-item-actions__quantity-select">
-          <%= form_with(
-              model: pd,
-              method: "post",
-              url: cart_line_item_update_quantity_path(line_item_id: pd.id),
-              class: "line-item__quantity-form light",
-            ) do |f| %>
-            <%= f.hidden_field :product_id, { value: pd.id } %>
-          <div class="form-control light">
-            <%= f.label :quantity, "Quantity", { class: "visually-hidden"} %>
-            <%= f.number_field :quantity, { min: 1, max: 30, value: qty, class: "light"} %>
+  <section class="main-content-with-sidebar">
+    <article>
+      <section class="flex-table">
+      <%
+        @products.each do |product|
+          pd = product[:product]
+          qty = product[:quantity]
+      %>
+        <article class="flex-table__item line-item">
+          <figure
+            class="line-item__image has-background-image"
+            style="background-image: url(<%= pd.image_url(:pd) %>)">
+          </figure>
+          <div class="line-item__details line-item-details">
+            <div class="line-item-details__type">
+              <%= pd.product_type %>
+            </div>
+            <div class="line-item-details__name">
+              <%= pd.name %>
+            </div>
+            <div class="line-item-details__price">
+              <%= number_to_currency(pd.price) %>
+            </div>
           </div>
-          <div class="form-control light">
-            <button class="button naked xsmall" type="submit">
-              Update Quantity
-            </button>
+          <div class="line-item__quantity">
+            <div class="line-item-actions__quantity-select">
+              <%= form_with(
+                  model: pd,
+                  method: "post",
+                  url: cart_line_item_update_quantity_path(line_item_id: pd.id),
+                  class: "line-item__quantity-form light",
+                ) do |f| %>
+                <%= f.hidden_field :product_id, { value: pd.id } %>
+              <div class="form-control light">
+                <%= f.label :quantity, "Quantity", { class: "visually-hidden"} %>
+                <%= f.number_field :quantity, { min: 1, max: 30, value: qty, class: "light"} %>
+              </div>
+              <div class="form-control light">
+                <button class="button naked xsmall" type="submit">
+                  Update Quantity
+                </button>
+              </div>
+            <% end %>
+            </div>
+            <%= link_to "Remove Item", cart_line_item_remove_item_path(line_item_id: pd.id), method: :post, data: { confirm: 'Are you sure?' }, class: "button link xsmall" %>
           </div>
-        <% end %>
-        </div>
-        <%= link_to "Remove Item", cart_line_item_remove_item_path(line_item_id: pd.id), method: :post, data: { confirm: 'Are you sure?' }, class: "button link xsmall" %>
-      </div>
-      <div class="line-item__total">
-        <%= number_to_currency(pd.price * qty) %>
-      </div>
+          <div class="line-item__total">
+            <%= number_to_currency(pd.price * qty) %>
+          </div>
 
+        </article>
+      <% end %>
+      </section>
     </article>
-  <% end %>
+    <aside>
+      <div class="box">
+        <p class="bigger">
+          <strong>Subtotal:</strong>
+        </p>
+        <p>
+          <%= number_to_currency(@cart.cart_subtotal) %>
+        </p>
+      </div>
+    </aside>
   </section>
 
-  <section class="m-xsmall-top-1 m-small-top-3">
-    <%= link_to "Checkout", new_checkout_path, class: "button link xsmall" %>
-  </section>
+  <% if !@products.empty? %>
+    <section class="m-xsmall-top-1 m-small-top-3">
+      <%= link_to "Checkout", checkout_path, class: "button link xsmall", remote: true, method: 'post' %>
+    </section>
+  <% end %>
 
 </section>

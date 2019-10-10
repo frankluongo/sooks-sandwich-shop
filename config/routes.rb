@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   end
 
   # Checkout
-  resource :checkout, controller: 'checkout', only: [:new, :create, :update]
+  resource :checkout, controller: 'checkout', only: [:create]
 
   namespace :checkout, path: 'checkout' do
     resource :shipping, only: [:show, :update], controller: 'shipping'

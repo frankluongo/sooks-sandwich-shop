@@ -16,22 +16,31 @@ class CheckoutController < ApplicationController
     end
   end
 
-  private
-
-  def build_order_line_items
+  def create
+    @cart = Cart.find_by(user_id: current_or_guest_user.id)
+    @products = CartLineItem.where(cart_id: @cart.id)
     @products.each do |p|
-      if OrderLineItem.find_by(product: p.product_id, order_id: @order.id).nil?
-        line_item = OrderLineItem.create({
+      existing_item = OrderLineItem.find_by(product: p.product_id, order_id: @order.id)
+      if existing_item
+        existing_item.update({
+          quantity: p.quantity
+        })
+      else
+        OrderLineItem.create({
           product: p.product_id,
           order_id: @order.id,
           quantity: p.quantity
         })
       end
     end
+
+    redirect_to checkout_shipping_path
   end
 
+  private
+
   def set_order
-    @order = Order.find_by(id: session[:current_order_id], order_completed: false) || Order.find_by(user_id: current_or_guest_user.id, order_completed: false) || Order.new(user_id: current_or_guest_user.id)
+    @order = Order.find_by(id: session[:current_order_id], order_completed: false) || Order.find_by(user_id: current_or_guest_user.id, order_completed: false) || Order.create(user_id: current_or_guest_user.id)
     session[:current_order_id] = @order.id
   end
 

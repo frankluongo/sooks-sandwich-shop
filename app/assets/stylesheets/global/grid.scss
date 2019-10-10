@@ -27,6 +27,10 @@
     gap: 2rem;
     grid-template-columns: 3fr 1fr;
   }
+
+  .flex-container {
+    display: flex;
+  }
 }
 
 $alignment-options: (flex-start, flex-end, center, baseline, stretch);

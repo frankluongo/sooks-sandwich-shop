@@ -10,9 +10,13 @@ class Checkout::ReviewController < CheckoutController
 
   def update
     respond_to do |format|
-      if @order.update(
-        billing_params.merge(billing_details_completed: true)
-      )
+      if @order.update({
+        order_subtotal: ,
+        order_shipping: ,
+        order_tax: ,
+        order_total: ,
+        billing_details_completed: true
+      })
         format.html { redirect_to checkout_shipping_method_path }
       else
         format.html { redirect_to root_url, notice: 'Oh No!' }

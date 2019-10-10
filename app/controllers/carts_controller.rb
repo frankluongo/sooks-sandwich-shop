@@ -7,6 +7,9 @@ class CartsController < ApplicationController
       product: Product.find(p.product_id),
       quantity: p.quantity
     }}
+    @cart.update({
+      cart_subtotal: @products.reduce(0) { |sum, product| sum + product[:quantity] * product[:product].price }
+    })
   end
 
 end

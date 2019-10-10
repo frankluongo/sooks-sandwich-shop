@@ -1,5 +1,7 @@
-<% @orders.each do |order| %>
-  <div class="box m-xsmall-bottom-1 m-small-bottom-3">
-    <%= order.inspect %>
+<section class="container">
+  <div class="page-heading">
+    <h1>My Orders</h1>
   </div>
-<% end %>
+  <%= render partial: 'order', collection: @orders %>
+</section>
+
