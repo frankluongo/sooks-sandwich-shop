@@ -9,6 +9,13 @@ Prompt:
 > I'm Sook, I just founded a new business called Sook's Sandwich bar Shop. For a while now, I've been looking for a good website for my business.
 > We need a new login-page for our employee web portal. Can you help us out?
 
+## Todos
+
+- [] Add Prices to Shipping Options
+- [] Add Totals To Orders
+- [] Display Totals on Orders Page
+- [] Only allow orders with products and prices
+
 ## Tech Stack
 
 - Ruby 2.6.4
