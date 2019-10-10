@@ -1,0 +1,72 @@
+<%= form_with model: @order, url: checkout_billing_path do |form| %>
+  <section class="checkout-billing-form__option m-xsmall-bottom-2 m-small-bottom-4">
+    <h3 class="m-xsmall-bottom-2 m-small-bottom-2">Select Your Payment Option</h3>
+    <div class="form-control">
+      <%= form.label :billing_option, "Billing Option", { class: "visually-hidden" } %>
+      <div class="form-control radio-button-group">
+        <%= collection_radio_buttons(:order, :billing_option, @billing_options, :id, :name) %>
+      </div>
+    </div>
+  </section>
+
+  <section class="checkout-billing-form__billing-address">
+    <h3 class="m-xsmall-bottom-1 m-small-bottom-2">Select Your Billing Address</h3>
+    <section class="checkout-billing-form-billing-address__same-as-shipping">
+      <div class="form-control radio-button-group">
+        <%= form.check_box :shipping_same_as_billing, { class: "light", "data-js" => "BillingPage.SameAsShipping" } %>
+        <%= form.label :shipping_same_as_billing, "Same As Shipping?" %>
+      </div>
+    </section>
+    <section
+      aria-hidden="false"
+      class="checkout-billing-form-billing-address__billing-address-details"
+      data-js="BillingPage.BillingAddress"
+      >
+      <div class="form-control">
+        <%= form.label :billing_first_name, "First Name" %>
+        <%= form.text_field :billing_first_name %>
+      </div>
+      <div class="form-control">
+        <%= form.label :billing_last_name, "Last Name" %>
+        <%= form.text_field :billing_last_name %>
+      </div>
+      <div class="form-control">
+        <%= form.label :billing_address_line_1, "Address Line 1" %>
+        <%= form.text_field :billing_address_line_1 %>
+      </div>
+      <div class="form-control">
+        <%= form.label :billing_address_line_2, "Address Line 2" %>
+        <%= form.text_field :billing_address_line_2 %>
+      </div>
+      <div class="form-control">
+        <%= form.label :billing_state, "State" %>
+        <%= form.select :billing_state, options_for_select(us_states) %>
+      </div>
+      <div class="form-control">
+        <%= form.label :billing_country, "Country" %>
+        <%= form.text_field :billing_country %>
+      </div>
+      <div class="form-control">
+        <%= form.label :billing_city, "City" %>
+        <%= form.text_field :billing_city %>
+      </div>
+      <div class="form-control">
+        <%= form.label :billing_zip_code, "Zip Code" %>
+        <%= form.text_field :billing_zip_code %>
+      </div>
+      <div class="form-control">
+        <%= form.label :billing_phone_number, "Phone Number" %>
+        <%= form.telephone_field :billing_phone_number %>
+      </div>
+      <div class="form-control">
+        <%= form.label :billing_email_address, "Email Address" %>
+        <%= form.email_field :billing_email_address %>
+      </div>
+    </section>
+  </section>
+
+
+  <div class="actions">
+    <%= form.submit "Save", { "class" => "button default primary m-xsmall-top-1 elevated-item"} %>
+  </div>
+<% end %>

@@ -1,0 +1,31 @@
+<section class="flex-table">
+  <%
+    @products.each do |product|
+      pd = product[:product]
+      qty = product[:quantity]
+  %>
+    <article class="flex-table__item line-item">
+      <figure
+        class="line-item__image has-background-image"
+        style="background-image: url(<%= pd.image_url(:pd) %>)">
+      </figure>
+      <div class="line-item__details line-item-details">
+        <div class="line-item-details__type">
+          <%= pd.product_type %>
+        </div>
+        <div class="line-item-details__name">
+          <%= pd.name %>
+        </div>
+        <div class="line-item-details__price">
+          <%= number_to_currency(pd.price) %>
+        </div>
+      </div>
+      <div class="line-item__quantity m-small-right-1">
+        <%= qty %>
+      </div>
+      <div class="line-item__total">
+        <%= number_to_currency(pd.price * qty) %>
+      </div>
+
+    </article>
+  <% end %>

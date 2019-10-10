@@ -9,3 +9,6 @@
 ShippingOption.find_or_create_by(name: "Fast Standard Shipping")
 ShippingOption.find_or_create_by(name: "2 Day Shipping")
 ShippingOption.find_or_create_by(name: "1 Day Shipping")
+
+BillingOption.find_or_create_by(name: "Credit Card")
+BillingOption.find_or_create_by(name: "PayPal")

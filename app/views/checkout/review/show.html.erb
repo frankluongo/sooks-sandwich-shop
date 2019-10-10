@@ -2,11 +2,14 @@
   <article class="main-content">
     <div class="page-heading">
       <h1>
-        Select Shipping Method
+        Order Review
       </h1>
     </div>
     <div class="m-xsmall-top-1 m-small-top-3">
-      <%= render 'form' %>
+      <%= render 'products' %>
+    </div>
+    <div class="m-xsmall-top-1 m-small-top-3">
+      <%= link_to "Complete Order", checkout_receipt_path, { class: "button primary default block" } %>
     </div>
   </article>
   <%= render 'shared/sidebar' %>

@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
   end
 
+  namespace :users do
+    get 'orders', to: 'orders#index'
+  end
+
   # Products
   resources :products, param: :slug
 
@@ -31,14 +35,11 @@ Rails.application.routes.draw do
   resource :checkout, controller: 'checkout', only: [:new, :create, :update]
 
   namespace :checkout, path: 'checkout' do
-    resource :shipping, only: :show, controller: 'shipping' do
-      post 'add-shipping', to: 'shipping#add_shipping'
-      patch 'add-shipping', to: 'shipping#add_shipping'
-    end
-
-    resource :shipping_method, only: :show, controller: 'shipping_method', path: 'shipping-method' do
-      post 'add-shipping-method', to: 'shipping_method#add_shipping_method'
-    end
+    resource :shipping, only: [:show, :update], controller: 'shipping'
+    resource :shipping_method, only: [:show, :update], controller: 'shipping_method', path: 'shipping-method'
+    resource :billing, only: [:show, :update], controller: 'billing'
+    resource :review, only: :show, controller: 'review'
+    resource :receipt, only: [:show, :update], controller: 'receipt'
   end
 
   # Orders

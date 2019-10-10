@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <%= render 'layouts/head' %>
+  <body>
+    <%= render 'layouts/checkout/header' %>
+    <main>
+      <%= render 'layouts/notice' %>
+      <%= render 'layouts/checkout/navigation' %>
+      <%= yield %>
+    </main>
+    <%= stylesheet_link_tag 'checkout', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'checkout', 'data-turbolinks-track': 'reload' %>
+  </body>
+</html>

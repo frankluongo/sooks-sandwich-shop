@@ -1,0 +1,71 @@
+  <aside class="sidebar">
+    <%if @order.shipping_details_completed %>
+      <article class="box">
+        <p class="bigger">
+          <strong>Shipping Details</strong>
+        </p>
+        <p>
+          <%= @order.shipping_first_name %>
+          <%= @order.shipping_last_name %>
+        </p>
+        <p>
+          <%= @order.shipping_address_line_1 %>
+        </p>
+        <% if !@order.shipping_address_line_2.empty? %>
+          <p>
+            <%= @order.shipping_address_line_2 %>
+          </p>
+        <% end %>
+        <p>
+          <%= @order.shipping_city %>,
+          <%= @order.shipping_state %>
+          <%= @order.shipping_zip_code %>
+        </p>
+        <p>
+          <%= @order.shipping_country %>
+        </p>
+      </article>
+    <% end %>
+
+    <% if @order.shipping_option_completed %>
+      <article class="box m-xsmall-top-1">
+        <p class="bigger">
+          <strong>Shipping Method</strong>
+        </p>
+        <p>
+          <%= shipping_option(@order.shipping_option) %>
+        </p>
+      </article>
+    <% end %>
+    <% if @order.billing_details_completed %>
+      <article class="box m-xsmall-top-1">
+        <p class="bigger">
+          <strong>Billing Details</strong>
+        </p>
+        <p>
+          <%= billing_option(@order.billing_option) %>
+        </p>
+        <p>
+          <%= @order.billing_first_name %>
+          <%= @order.billing_last_name %>
+        </p>
+        <p>
+          <%= @order.billing_address_line_1 %>
+        </p>
+        <% if !@order.billing_address_line_2.empty? %>
+          <p>
+            <%= @order.billing_address_line_2 %>
+          </p>
+        <% end %>
+        <p>
+          <%= @order.billing_city %>,
+          <%= @order.billing_state %>
+          <%= @order.billing_zip_code %>
+        </p>
+        <p>
+          <%= @order.billing_country %>
+        </p>
+      </article>
+    <% end %>
+
+  </aside>

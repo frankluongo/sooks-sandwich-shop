@@ -1,14 +1,10 @@
 class Checkout::ShippingController < CheckoutController
-  before_action :authenticate_user!
-
-  def show
-    @order = Order.find(session[:current_order_id])
-  end
-
-  def add_shipping
-    @order = Order.find(session[:current_order_id])
+  def update
     respond_to do |format|
-      if @order.update(shipping_params)
+      if @order.update(
+        shipping_params.merge(
+          shipping_details_completed: true
+        ))
         format.html { redirect_to checkout_shipping_method_path }
       else
         format.html { redirect_to root_url, notice: 'Oh No!' }

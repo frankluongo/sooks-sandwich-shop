@@ -142,6 +142,29 @@ form {
   margin-bottom: -1rem;
 }
 
+.radio-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.form-control.radio-button-group input {
+  flex-basis: 2rem;
+
+  margin: 0 0 1rem;
+
+  box-shadow: none;
+}
+
+.form-control.radio-button-group label {
+  flex-basis: calc(100% - 2rem);
+
+  font-family: $primaryFont;
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
 @include breakpoint(small) {
   form {
     padding: 2rem;

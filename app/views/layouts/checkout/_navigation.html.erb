@@ -1,0 +1,16 @@
+<section class="container">
+  <ul class="checkout-navigation inline-list m-xsmall-bottom-1 m-small-bottom-3">
+    <li>
+      <%= link_to_if @order.shipping_details_completed, "Shipping Address", checkout_shipping_path  %>
+    </li>
+    <li>
+      <%= link_to_if @order.shipping_option_completed, "Shipping Method", checkout_shipping_method_path  %>
+    </li>
+    <li>
+      <%= link_to_if @order.billing_details_completed, "Billing", checkout_billing_path  %>
+    </li>
+    <li>
+      <%= link_to_if @order.billing_details_completed, "Review", checkout_review_path  %>
+    </li>
+  </ul>
+</section>

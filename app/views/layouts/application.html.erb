@@ -1,29 +1,9 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Myapp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Passion+One:400,700,900&display=swap" rel="stylesheet">
-  </head>
-
+  <%= render 'layouts/head' %>
   <body>
     <%= render 'layouts/header' %>
     <main>
-      <% if notice %>
-        <div class="notification notification--notice elevated-item">
-          <div class="notification__text notification-text__notice"><%= notice %></div>
-        </div>
-      <% end %>
-      <% if alert %>
-        <div class="notification notification--alert elevated-item">
-          <div class="notification__text notification-text__alert"><%= alert %></div>
-        </div>
-      <% end %>
+      <%= render 'layouts/notice' %>
       <%= yield %>
     </main>
   </body>

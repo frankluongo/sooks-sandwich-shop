@@ -21,6 +21,10 @@
   cursor: pointer;
   transition: all 150ms ease-in-out;
 
+  &.block {
+    display: inline-block;
+  }
+
   &.xsmall {
     padding: 0.5em 0;
 
@@ -53,7 +57,7 @@
     text-decoration: none;
 
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       bottom: -0.25rem;
