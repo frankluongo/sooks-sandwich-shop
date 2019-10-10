@@ -1,6 +1,29 @@
   <aside class="sidebar">
-    <%if @order.shipping_details_completed %>
+    <% if @order.shipping_option_completed %>
       <article class="box">
+        <p class="bigger">
+          <strong>Order Details</strong>
+        </p>
+        <p>
+          <strong>Subtotal: </strong>
+          <%= number_to_currency(@order.order_subtotal) %>
+        </p>
+        <p>
+          <strong>Tax: </strong>
+          <%= number_to_currency(@order.order_tax) %>
+        </p>
+        <p>
+          <strong>Shipping: </strong>
+          <%= number_to_currency(@order.order_shipping) %>
+        </p>
+        <p>
+          <strong>Total: </strong>
+          <%= number_to_currency(@order.order_total) %>
+        </p>
+      </article>
+    <% end %>
+    <%if @order.shipping_details_completed %>
+      <article class="box m-xsmall-top-1">
         <p class="bigger">
           <strong>Shipping Details</strong>
         </p>

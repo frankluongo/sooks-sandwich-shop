@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-ShippingOption.find_or_create_by(name: "Fast Standard Shipping")
-ShippingOption.find_or_create_by(name: "2 Day Shipping")
-ShippingOption.find_or_create_by(name: "1 Day Shipping")
+ShippingOption.find_or_create_by(name: "Fast Standard Shipping", price: 0.00)
+ShippingOption.find_or_create_by(name: "2 Day Shipping", price: 30.00)
+ShippingOption.find_or_create_by(name: "1 Day Shipping", price: 60.00)
 
 BillingOption.find_or_create_by(name: "Credit Card")
 BillingOption.find_or_create_by(name: "PayPal")

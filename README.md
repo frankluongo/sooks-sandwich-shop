@@ -11,9 +11,9 @@ Prompt:
 
 ## Todos
 
-- [] Add Prices to Shipping Options
-- [] Add Totals To Orders
-- [] Display Totals on Orders Page
+- [x] Add Prices to Shipping Options
+- [x] Add Totals To Orders
+- [x] Display Totals on Orders Page
 - [] Only allow orders with products and prices
 
 ## Tech Stack
@@ -50,7 +50,6 @@ default: &default
 development:
   <<: *default
   database: myapp_development
-
 
 test:
   <<: *default

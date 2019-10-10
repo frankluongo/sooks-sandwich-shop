@@ -9,19 +9,19 @@ class Checkout::ReviewController < CheckoutController
   end
 
   def update
-    respond_to do |format|
-      if @order.update({
-        order_subtotal: ,
-        order_shipping: ,
-        order_tax: ,
-        order_total: ,
-        billing_details_completed: true
-      })
-        format.html { redirect_to checkout_shipping_method_path }
-      else
-        format.html { redirect_to root_url, notice: 'Oh No!' }
-      end
-    end
+    # respond_to do |format|
+    #   if @order.update({
+    #     order_subtotal: ,
+    #     order_shipping: ,
+    #     order_tax: ,
+    #     order_total: ,
+    #     billing_details_completed: true
+    #   })
+    #     format.html { redirect_to checkout_shipping_method_path }
+    #   else
+    #     format.html { redirect_to root_url, notice: 'Oh No!' }
+    #   end
+    # end
   end
 
   private

@@ -3,6 +3,9 @@ class Checkout::BillingController < CheckoutController
   def show
     @shipping_option = ShippingOption.find(@order.shipping_option)
     @billing_options = BillingOption.all
+    @order.update({
+      order_total: @order.order_subtotal + @order.order_shipping + @order.order_tax
+    })
   end
 
   def update

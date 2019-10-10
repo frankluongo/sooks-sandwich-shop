@@ -29,18 +29,29 @@
     <% end %>
   </section>
   <aside>
-    <article class="box m-xsmall-bottom-1">
+    <article class="box">
       <p class="bigger">
         <strong>Order Details</strong>
       </p>
       <p>
-        <%= order[:order_subtotal] %>
-        <%= order[:order_tax] %>
-        <hr>
-        <%= order[:order_total] %>
+        <strong>Subtotal: </strong>
+        <%= number_to_currency(order[:order_subtotal]) %>
+      </p>
+      <p>
+        <strong>Tax: </strong>
+        <%= number_to_currency(order[:order_tax]) %>
+      </p>
+      <p>
+        <strong>Shipping: </strong>
+        <%= number_to_currency(order[:order_shipping]) %>
+      </p>
+      <hr>
+      <p>
+        <strong>Total: </strong>
+        <%= number_to_currency(order[:order_total]) %>
       </p>
     </article>
-    <article class="box">
+    <article class="box m-xsmall-top-1">
       <p class="bigger">
         <strong>Shipping Details</strong>
       </p>
