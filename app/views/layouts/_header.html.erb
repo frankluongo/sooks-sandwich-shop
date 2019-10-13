@@ -1,18 +1,14 @@
 <header class="site-header background-primary-4 p-xsmall-top-1 p-xsmall-bottom-1">
   <section class="site-header__container container">
     <figure class="site-header__logo site-header-logo">
-      logo
+      <%= link_to root_path do %>
+        <%= render 'shared/icons/logo' %>
+      <% end %>
     </figure>
     <nav class="site-header__navigation site-navigation">
       <ul class="site-navigation__list inline-list">
         <li class="site-navigation-list__item">
-          <%= link_to "Home", content_index_path, { "class" => "site-navigation-list-item__link ui__nav-link"} %>
-        </li>
-        <li class="site-navigation-list__item">
-          <%= link_to "About", about_path, { "class" => "site-navigation-list-item__link ui__nav-link"} %>
-        </li>
-        <li class="site-navigation-list__item">
-          <%= link_to "Products", products_path, { "class" => "site-navigation-list-item__link ui__nav-link"} %>
+          <%= link_to "Home", root_path, { "class" => "site-navigation-list-item__link ui__nav-link"} %>
         </li>
         <%= auth_or_unauth() %>
         <li class="site-navigation-list__item">

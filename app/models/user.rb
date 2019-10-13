@@ -20,4 +20,5 @@ class User < ApplicationRecord
 
   has_many :orders
   has_many :products, through: :orders
+  has_one :cart, dependent: :destroy
 end

@@ -1,7 +1,9 @@
 <header class="site-header background-primary-4 p-xsmall-top-1 p-xsmall-bottom-1">
   <section class="site-header__container container">
     <figure class="site-header__logo site-header-logo">
-      <%= link_to "Logo", root_path %>
+      <%= link_to root_path do %>
+        <%= render 'shared/icons/logo' %>
+      <% end %>
     </figure>
   </section>
 </header>

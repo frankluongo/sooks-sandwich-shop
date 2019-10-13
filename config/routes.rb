@@ -49,5 +49,5 @@ Rails.application.routes.draw do
   get 'content/index'
   get '/about', to: 'content#about'
 
-  root 'content#index'
+  root 'products#index'
 end

@@ -4,10 +4,15 @@
 
 .site-header__container {
   display: flex;
+  align-items: center;
 }
 
 .site-header__logo {
-  flex: 0 1 6rem;
+  flex: 0 1 auto;
+}
+
+.site-header-logo svg {
+  height: 3rem;
 }
 
 .site-header__navigation {
@@ -25,4 +30,10 @@
 
 .site-navigation-list__item {
   flex: 1 1 auto;
+}
+
+@include breakpoint(small) {
+  .site-header__navigation {
+    padding-left: 3rem;
+  }
 }
